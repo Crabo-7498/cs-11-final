@@ -1,0 +1,104 @@
+/*-------------- STYLESHEET USED FOR EASIER READABILITY AND LOOKS --------------*/
+
+.root {
+    -fx-background-color: #F0F0FF;
+}
+
+
+/*-------------- PAGINATION --------------*/
+.pagination {
+    -fx-background-color: transparent;
+}
+
+.pagination .button {
+    -fx-background-color: #e0e0e0;
+    -fx-border-radius: 0px;
+    -fx-border-color: transparent;
+}
+
+.pagination .button:hover {
+    -fx-background-color: #C0C0C0;
+    -fx-border-radius: 0px;
+    -fx-border-color: transparent;
+}
+
+.pagination .button:pressed {
+    -fx-background-color: #999999;
+    -fx-border-radius: 0px;
+    -fx-border-color: transparent;
+}
+
+.pagination .number-button {
+    -fx-background-color: #F0F0F0;
+    -fx-font-size: 13px;
+    -fx-font-family: "JetBrains Mono NL";
+}
+
+.pagination .number-button:hover {
+    -fx-background-color: #C0C0C0;
+}
+
+.pagination .number-button:pressed {
+    -fx-background-color: #6868F0;
+}
+
+.pagination .pagination-control .toggle-button:selected {
+    -fx-background-color: #8080EE;
+}
+
+.pagination .label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-font-family: "JetBrains Mono NL";
+}
+
+.split-pane {
+    -fx-background-color: #505050;
+}
+
+.split-pane > .split-pane-divider {
+    -fx-background-color: #383838;
+}
+
+
+/*-------------- BUTTON --------------*/
+.button {
+    -fx-background-color: transparent;
+    -fx-border-color: #8080FF;
+    -fx-border-width: 3px;
+}
+
+.button:hover {
+    -fx-border-color: #7373FF;
+}
+
+.button:pressed {
+    -fx-border-color: #5050F0;
+    -fx-background-color: #484848;
+}
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 3px;
+    -fx-border-color: #8080FF;
+    -fx-font-size: 14px;
+    -fx-text-fill: #FFFFFF;
+    -fx-prompt-text-fill: #D0D0D0;
+    -fx-font-family: "JetBrains Mono NL";
+    -fx-cursor: text;
+}
+
+.text-field:focused {
+    -fx-border-color: #5050F0;
+    -fx-background-color: #484848;
+}
+
+/*-------------- IDS --------------*/
+
+#lbTitle {
+    -fx-background-color: #383838;
+}
+
+#calendarArrowButton {
+    -fx-background-size: 20px, 20px;
+}

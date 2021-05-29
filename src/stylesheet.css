@@ -1,0 +1,15 @@
+/*-------------- STYLESHEET USED FOR EASIER READABILITY AND LOOKS --------------*/
+
+.root {
+    -fx-background-color: #303030;
+}
+
+.button {
+
+}
+
+.text-field {
+    -fx-background-color: #e8e8e8;
+    -fx-border-color: #101010;
+    -fx-font-style: #606060;
+}
