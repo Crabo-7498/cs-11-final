@@ -1,13 +1,32 @@
 /*-------------- STYLESHEET USED FOR EASIER READABILITY AND LOOKS --------------*/
 
 .root {
-    -fx-background-color: #E0E0E0;
+    -fx-background-color: #E0E0E5;
 }
 
 .text-field {
-    -fx-background-color: #e8e8e8;
-    -fx-border-color: #101010;
-    -fx-font-style: #606060;
+    -fx-background-color: transparent;
+    -fx-border-color: #6060FF;
+    -fx-border-width: 3px;
+    -fx-border-radius: 2px;
+    -fx-font-family: "JetBrains Mono NL";
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #E5E5E5;
+}
+
+.text-field:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-border-color: #6060FF;
+}
+
+.text-field:focused {
+    -fx-border-color: #5050E0;
+}
+
+.text-field:hover:focused {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-border-color: #5050E0;
 }
 
 .button {
@@ -15,6 +34,18 @@
     -fx-border-color: #6060FF;
     -fx-border-width: 3px;
     -fx-border-radius: 2px;
+    -fx-font-family: "JetBrains Mono NL";
+    -fx-text-fill: #FFFFFF;
+}
+
+.button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-border-color: #6060FF;
+}
+
+.button:pressed {
+    -fx-border-color: #5050E0;
+    -fx-background-color: transparent;
 }
 
 .split-pane {
@@ -26,7 +57,31 @@
     -fx-padding: 3px;
 }
 
+.pagination {
+    -fx-background-color: transparent;
+}
+
+.pagination .pagination-control .left-arrow .right-arrow {
+    -fx-font-family: "JetBrains Mono NL";
+    -fx-background-color: #303030;
+}
+
 
 #lbTitle {
     -fx-background-color: #303030;
+}
+
+#cell {
+    -fx-border-color: #202020;
+    -fx-border-width: 1px;
+}
+
+#gpaneCalendar {
+    -fx-border-color: #202020;
+    -fx-border-width: 2px;
+}
+
+#dateLabel {
+    -fx-font-family: "JetBrains Mono NL";
+    -fx-text-fill: #202020;
 }

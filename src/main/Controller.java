@@ -32,16 +32,16 @@ public class Controller {
         for(int i = 0; i < 5; i++) {
             for(int j = 0; j < 7; j++) {
                 int daysFromNow = j + (7 * i);
-                System.out.println(daysFromNow);
-
                 String date = getNextDate(daysFromNow);
 
                 VBox cell = new VBox();
                 Label dateLabel = new Label(date);
-                dateLabel.setTranslateY(-21);
-                dateLabel.setTranslateX(5);
 
-                cell.getChildren().set(0, dateLabel);
+                dateLabel.setTranslateX(5);
+                dateLabel.setId("dateLabel");
+
+                cell.setId("cell");
+                cell.getChildren().add(0, dateLabel);
 
 
                 gpaneCalendar.add(cell, j, i);
