@@ -28,19 +28,36 @@ public class Controller {
         //System.out.println(pgnCalendars.getCurrentPageIndex());
 
         gpaneCalendar.getChildren().clear();
+        String today = getNextDate(0);
+        String currentMonth = today.substring(0, 2);
 
         for(int i = 0; i < 5; i++) {
             for(int j = 0; j < 7; j++) {
-                int daysFromNow = j + (7 * i);
-                String date = getNextDate(daysFromNow);
+                int daysFromFDate = j + (7 * i);
+                String date = getNextDate(daysFromFDate - Integer.parseInt(today.substring(2)) + 1);
 
+                // Create Individual cells inside GridPane for easier formatting and permanent gridlines
                 VBox cell = new VBox();
-                Label dateLabel = new Label(date);
 
+                // Remove "0" at start of date
+                Label dateLabel;
+                if(date.charAt(2) == '0')
+                    dateLabel = new Label(date.substring(3));
+                else
+                    dateLabel = new Label(date.substring(2));
+
+                // Move Date Label to correct position
                 dateLabel.setTranslateX(5);
-                dateLabel.setId("dateLabel");
+                dateLabel.setTranslateY(2);
+
+                // Change font color if date is not in current month
+                if(!date.substring(0, 2).equals(currentMonth))
+                    dateLabel.setId("dateLabelOther");
+                else
+                    dateLabel.setId("dateLabel");
 
                 cell.setId("cell");
+
                 cell.getChildren().add(0, dateLabel);
 
 
@@ -50,7 +67,7 @@ public class Controller {
     }
 
     private String getNextDate(int days) {
-        final SimpleDateFormat format = new SimpleDateFormat("MM/dd");
+        final SimpleDateFormat format = new SimpleDateFormat("MMdd");
         final Date date = new Date();
         final Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);

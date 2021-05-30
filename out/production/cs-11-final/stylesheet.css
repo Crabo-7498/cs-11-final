@@ -4,6 +4,9 @@
     -fx-background-color: #E0E0E5;
 }
 
+
+/*-------------- TEXT FIELD --------------*/
+
 .text-field {
     -fx-background-color: transparent;
     -fx-border-color: #6060FF;
@@ -14,6 +17,7 @@
     -fx-font-size: 14px;
     -fx-prompt-text-fill: #E5E5E5;
 }
+
 
 .text-field:hover {
     -fx-background-color: rgba(255, 255, 255, 0.05);
@@ -28,6 +32,9 @@
     -fx-background-color: rgba(255, 255, 255, 0.05);
     -fx-border-color: #5050E0;
 }
+
+
+/*-------------- BUTTON --------------*/
 
 .button {
     -fx-background-color: transparent;
@@ -48,6 +55,8 @@
     -fx-background-color: transparent;
 }
 
+/*-------------- PAGINATION --------------*/
+
 .split-pane {
     -fx-background-color: #505050;
 }
@@ -57,6 +66,7 @@
     -fx-padding: 3px;
 }
 
+
 /*-------------- PAGINATION --------------*/
 
 .pagination {
@@ -64,12 +74,10 @@
     -fx-font-size: 14px;
 }
 
-/* Remove spacing */
 .pagination > .pagination-control > .control-box {
     -fx-spacing: 1;
 }
 
-/* You can control the actual button sizes here */
 .pagination > .pagination-control > .control-box > .number-button,
 .pagination > .pagination-control > .control-box > .bullet-button,
 .pagination > .pagination-control > .control-box > .left-arrow-button,
@@ -81,7 +89,6 @@
     -fx-border-width: 0px;
 }
 
-/* Colors on hover */
 .pagination > .pagination-control > .control-box > .number-button:hover,
 .pagination > .pagination-control > .control-box > .bullet-button:hover,
 .pagination > .pagination-control > .control-box > .left-arrow-button:hover,
@@ -90,11 +97,10 @@
     -fx-background-color: lightgray;
 }
 
-/* Selected toggle color */
 .pagination > .pagination-control > .control-box > .number-button:selected,
 .pagination > .pagination-control > .control-box > .bullet-button:selected{
     -fx-background-insets: 0;
-    -fx-background-color: #4840E0;
+    -fx-background-color: #6060F5;
     -fx-text-fill: white;
 }
 
@@ -102,6 +108,8 @@
     -fx-text-fill: #E0E0E0;
 }
 
+
+/*-------------- IDS --------------*/
 
 #lbTitle {
     -fx-background-color: #303030;
@@ -120,4 +128,9 @@
 #dateLabel {
     -fx-font-family: "JetBrains Mono NL";
     -fx-text-fill: #202020;
+}
+
+#dateLabelOther {
+    -fx-font-family: "JetBrains Mono NL";
+    -fx-text-fill: #808080;
 }

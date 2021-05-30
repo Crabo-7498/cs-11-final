@@ -100,7 +100,7 @@
 .pagination > .pagination-control > .control-box > .number-button:selected,
 .pagination > .pagination-control > .control-box > .bullet-button:selected{
     -fx-background-insets: 0;
-    -fx-background-color: #4840E0;
+    -fx-background-color: #6060F5;
     -fx-text-fill: white;
 }
 
@@ -128,4 +128,9 @@
 #dateLabel {
     -fx-font-family: "JetBrains Mono NL";
     -fx-text-fill: #202020;
+}
+
+#dateLabelOther {
+    -fx-font-family: "JetBrains Mono NL";
+    -fx-text-fill: #808080;
 }
