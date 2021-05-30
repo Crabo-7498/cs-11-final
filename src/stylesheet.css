@@ -1,15 +1,32 @@
 /*-------------- STYLESHEET USED FOR EASIER READABILITY AND LOOKS --------------*/
 
 .root {
-    -fx-background-color: #303030;
-}
-
-.button {
-
+    -fx-background-color: #E0E0E0;
 }
 
 .text-field {
     -fx-background-color: #e8e8e8;
     -fx-border-color: #101010;
     -fx-font-style: #606060;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-border-color: #6060FF;
+    -fx-border-width: 3px;
+    -fx-border-radius: 2px;
+}
+
+.split-pane {
+    -fx-background-color: #505050;
+}
+
+.split-pane-divider {
+    -fx-background-color: #303030;
+    -fx-padding: 3px;
+}
+
+
+#lbTitle {
+    -fx-background-color: #303030;
 }

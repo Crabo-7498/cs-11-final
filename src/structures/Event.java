@@ -10,4 +10,8 @@ public class Event {
         this.date = date;
         this.name = name;
     }
+
+    public String toTSV() {
+        return this.date + "\t" + this.name;
+    }
 }
