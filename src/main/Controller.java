@@ -1,11 +1,9 @@
 package main;
 
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import structures.CalendarView;
@@ -23,9 +21,15 @@ public class Controller {
     public Button btnPrev;
     public Button btnCreateCalendar;
     public TextField fieldNewCalendar;
+    public Label lbCalendarName;
 
     private void loadCalendar() {
-        //System.out.println(pgnCalendars.getCurrentPageIndex());
+        pgnCalendars.setPageCount(CalendarHandler.getSize());
+        int index = pgnCalendars.getCurrentPageIndex();
+
+        lbCalendarName.setText(CalendarHandler.getCalendar(index).getName());
+
+
 
         gpaneCalendar.getChildren().clear();
         String today = getNextDate(0);

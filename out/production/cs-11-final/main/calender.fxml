@@ -8,10 +8,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -40,9 +37,10 @@
             </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="568.0" prefWidth="582.0">
                <children>
-                  <VBox prefHeight="570.0" prefWidth="574.0">
+                  <Pagination fx:id="pgnCalendars" layoutY="474.0" maxPageIndicatorCount="4" pageCount="1" prefHeight="59.0" prefWidth="574.0" />
+                  <VBox prefHeight="477.0" prefWidth="574.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="57.0" prefWidth="574.0" text="CALENDAR NAME" textAlignment="CENTER" textFill="WHITE">
+                        <Label fx:id="lbCalendarName" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="57.0" prefWidth="574.0" text="CALENDAR NAME" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="JetBrains Mono NL Regular" size="28.0" />
                            </font>
@@ -81,31 +79,6 @@
                               </Button>
                            </children>
                         </HBox>
-                        <GridPane fx:id="gpaneCalendar" gridLinesVisible="true" minWidth="-Infinity" prefHeight="383.0" prefWidth="538.0" styleClass="root">
-                          <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.73599243164062" minWidth="10.0" prefWidth="50.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.73599243164062" minWidth="10.0" prefWidth="50.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.73599243164062" minWidth="10.0" prefWidth="50.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.73599243164062" minWidth="10.0" prefWidth="50.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.16061401367188" minWidth="10.0" prefWidth="50.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.92730712890625" minWidth="10.0" prefWidth="50.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="157.51785278320312" minWidth="10.0" prefWidth="50.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <VBox.margin>
-                              <Insets left="10.0" right="10.0" top="6.0" />
-                           </VBox.margin>
-                        </GridPane>
-                        <Pagination fx:id="pgnCalendars" maxPageIndicatorCount="2" pageCount="4" prefHeight="59.0" prefWidth="574.0">
-                           <VBox.margin>
-                              <Insets top="-4.0" />
-                           </VBox.margin></Pagination>
                      </children>
                   </VBox>
                </children>

@@ -13,6 +13,14 @@ public class CalendarHandler {
         calendars.add(cal);
     }
 
+    public static CalendarView getCalendar(int index) {
+        return calendars.get(index);
+    }
+
+    public static int getSize() {
+        return calendars.size();
+    }
+
     public static String toTSV() {
         String res = "";
         for(CalendarView c : calendars) {

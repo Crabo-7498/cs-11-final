@@ -19,4 +19,12 @@ public class CalendarView {
 
         return res;
     }
+
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
