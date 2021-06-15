@@ -16,18 +16,24 @@ import java.util.Date;
 public class Controller {
     public Label lbTitle;
     public GridPane gpaneCalendar;
-    public Pagination pgnCalendars;
     public Button btnFwrd;
     public Button btnPrev;
     public Button btnCreateCalendar;
     public Label lbCalendarName;
     public DatePicker dateSelector;
     public TextField fieldNewEvent;
+    public ListView<Event> listEvents = new ListView<>();
+    public Label labelEventName;
+    public TextField fieldDescription;
+    public Label labelDescription;
 
     public void addEvent() {
-        if(dateSelector.getValue() == null) return;
-        CalendarHandler.addEvent(new Event(dateSelector.getValue().toString().substring(2), fieldNewEvent.getText()));
+        if(dateSelector.getValue() == null || fieldNewEvent.getText().isEmpty()) return;
+        CalendarHandler.addEvent(new Event(dateSelector.getValue().toString().substring(2), fieldNewEvent.getText(), fieldDescription.getText()));
         System.out.println(dateSelector.getValue().toString().substring(2));
+
+        fieldNewEvent.clear();
+        fieldDescription.clear();
         loadCalendar();
     }
 
@@ -44,12 +50,7 @@ public class Controller {
                 // Create Individual cells inside GridPane for easier formatting and permanent gridlines
                 VBox cell = new VBox();
 
-                // Remove "0" at start of date
-                Label dateLabel;
-                if(date.charAt(4) == '0')
-                    dateLabel = new Label(date.substring(5));
-                else
-                    dateLabel = new Label(date.substring(4));
+                Label dateLabel = new Label(date);
 
                 // Move Date Label to correct position
                 dateLabel.setTranslateX(5);
@@ -78,7 +79,7 @@ public class Controller {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             System.out.println(((Label) cell.getChildren().get(0)).getText());
-                            displayEvents(getEventsOnDate(((Label) cell.getChildren().get(0)).getText()));
+                            displayEventList(getEventsOnDate(((Label) cell.getChildren().get(0)).getText()));
                         }
                     };
 
@@ -114,7 +115,18 @@ public class Controller {
         return list;
     }
 
-    private void displayEvents(ArrayList<Event> events) {
+    private void displayEventList(ArrayList<Event> events) {
+        System.out.println("yes");
+        listEvents.getItems().clear();
+        for(Event e : events) {
+            listEvents.getItems().add(e);
+        }
+    }
 
+    public void loadEvent(MouseEvent mouseEvent) {
+        Event e = listEvents.getSelectionModel().getSelectedItem();
+        if(e == null) return;
+        labelEventName.setText(e.name.toUpperCase());
+        labelDescription.setText(e.description);
     }
 }
