@@ -1,15 +1,13 @@
 package main;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import structures.CalendarView;
 import structures.CalendarHandler;
+import structures.Event;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -20,42 +18,43 @@ public class Controller {
     public Button btnFwrd;
     public Button btnPrev;
     public Button btnCreateCalendar;
-    public TextField fieldNewCalendar;
     public Label lbCalendarName;
+    public DatePicker dateSelector;
+    public TextField fieldNewEvent;
+
+    public void addEvent() {
+        if(dateSelector.getValue() == null) return;
+        CalendarHandler.addEvent(new Event(dateSelector.getValue().toString().substring(2), fieldNewEvent.getText()));
+        System.out.println(dateSelector.getValue().toString().substring(2));
+        loadCalendar();
+    }
 
     private void loadCalendar() {
-        pgnCalendars.setPageCount(CalendarHandler.getSize());
-        int index = pgnCalendars.getCurrentPageIndex();
-
-        lbCalendarName.setText(CalendarHandler.getCalendar(index).getName());
-
-
-
         gpaneCalendar.getChildren().clear();
         String today = getNextDate(0);
-        String currentMonth = today.substring(0, 2);
+        String currentMonth = today.substring(2, 4);
 
         for(int i = 0; i < 5; i++) {
             for(int j = 0; j < 7; j++) {
                 int daysFromFDate = j + (7 * i);
-                String date = getNextDate(daysFromFDate - Integer.parseInt(today.substring(2)) + 1);
-
+                String date = getNextDate(daysFromFDate - Integer.parseInt(today.substring(4, 5)) + 1);
+                System.out.println(date);
                 // Create Individual cells inside GridPane for easier formatting and permanent gridlines
                 VBox cell = new VBox();
 
                 // Remove "0" at start of date
                 Label dateLabel;
-                if(date.charAt(2) == '0')
-                    dateLabel = new Label(date.substring(3));
+                if(date.charAt(4) == '0')
+                    dateLabel = new Label(date.substring(5));
                 else
-                    dateLabel = new Label(date.substring(2));
+                    dateLabel = new Label(date.substring(4));
 
                 // Move Date Label to correct position
                 dateLabel.setTranslateX(5);
                 dateLabel.setTranslateY(2);
 
                 // Change font color if date is not in current month
-                if(!date.substring(0, 2).equals(currentMonth))
+                if(!date.substring(2, 4).equals(currentMonth))
                     dateLabel.setId("dateLabelOther");
                 else
                     dateLabel.setId("dateLabel");
@@ -64,6 +63,14 @@ public class Controller {
 
                 cell.getChildren().add(0, dateLabel);
 
+                ArrayList<Event> e = getEventsOnDate(date);
+
+                if(e.size() != 0) {
+                    Label l = new Label(e.size() + " Event (s)");
+                    l.setId("eventNotificationLabel");
+                    cell.getChildren().add(1, l);
+                }
+
 
                 gpaneCalendar.add(cell, j, i);
             }
@@ -71,7 +78,7 @@ public class Controller {
     }
 
     private String getNextDate(int days) {
-        final SimpleDateFormat format = new SimpleDateFormat("MMdd");
+        final SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd");
         final Date date = new Date();
         final Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -79,10 +86,15 @@ public class Controller {
         return format.format(calendar.getTime());
     }
 
+    private ArrayList<Event> getEventsOnDate(String date) {
+        ArrayList<Event> list = new ArrayList<>();
 
-    public void createCalendar() {
-        if(fieldNewCalendar.getText().isEmpty()) return; // TODO: Add Error Message
-        CalendarHandler.addCalendar(new CalendarView(fieldNewCalendar.getText()));
-        loadCalendar();
+        for(Event e : CalendarHandler.getEvents()) {
+            if(e.date.equals(date)) {
+                list.add(e);
+            }
+        }
+
+        return list;
     }
 }

@@ -3,30 +3,21 @@ package structures;
 import java.util.ArrayList;
 
 public class CalendarHandler {
-    private static final ArrayList<CalendarView> calendars = new ArrayList<>();
+    private static final ArrayList<Event> events = new ArrayList<>();
 
-    public static void addCalendar(CalendarView cal) {
-        calendars.add(cal);
-    }
-
-    public static void removeCalendar(CalendarView cal) {
-        calendars.add(cal);
-    }
-
-    public static CalendarView getCalendar(int index) {
-        return calendars.get(index);
-    }
-
-    public static int getSize() {
-        return calendars.size();
-    }
-
-    public static String toTSV() {
-        String res = "";
-        for(CalendarView c : calendars) {
-            res += c.toTSV();
+    public String toTSV() {
+        StringBuilder res = new StringBuilder();
+        for(Event e : events) {
+            res.append(e.toTSV()).append("\t");
         }
 
-        return res;
+        return res.toString();
+    }
+
+    public static ArrayList<Event> getEvents() {
+        return events;
+    }
+    public static void addEvent(Event event) {
+        events.add(event);
     }
 }
