@@ -1,6 +1,8 @@
 package main;
 
+import javafx.event.EventHandler;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import structures.CalendarHandler;
@@ -66,8 +68,22 @@ public class Controller {
                 ArrayList<Event> e = getEventsOnDate(date);
 
                 if(e.size() != 0) {
-                    Label l = new Label(e.size() + " Event (s)");
+                    Label l = new Label(e.size() + " Event(s)");
                     l.setId("eventNotificationLabel");
+                    l.setTranslateX(4);
+                    l.setTranslateY(5);
+
+                    // Creating an On Click Event Handler to display events
+                    EventHandler<MouseEvent> onClickedEvent = new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            System.out.println(((Label) cell.getChildren().get(0)).getText());
+                            displayEvents(getEventsOnDate(((Label) cell.getChildren().get(0)).getText()));
+                        }
+                    };
+
+                    cell.addEventFilter(MouseEvent.MOUSE_CLICKED, onClickedEvent);
+
                     cell.getChildren().add(1, l);
                 }
 
@@ -96,5 +112,9 @@ public class Controller {
         }
 
         return list;
+    }
+
+    private void displayEvents(ArrayList<Event> events) {
+
     }
 }

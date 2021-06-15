@@ -134,3 +134,9 @@
     -fx-font-family: "JetBrains Mono NL";
     -fx-text-fill: #808080;
 }
+
+#eventNotificationLabel {
+    -fx-font-family: "JetBrains Mono NL";
+    -fx-font-size: 10px;
+    -fx-text-fill: #EE3030;
+}
