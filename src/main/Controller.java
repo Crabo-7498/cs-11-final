@@ -1,5 +1,6 @@
 package main;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -7,8 +8,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import structures.CalendarHandler;
 import structures.Event;
+import structures.IOHandler;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,7 +22,8 @@ public class Controller {
     public Button btnFwrd;
     public Button btnPrev;
     public Button btnCreateCalendar;
-    public Label lbCalendarName;
+    public Label lbCalendarTitle;
+    public Label lbTodayEvents;
     public DatePicker dateSelector;
     public TextField fieldNewEvent;
     public ListView<Event> listEvents = new ListView<>();
@@ -27,10 +31,12 @@ public class Controller {
     public TextField fieldDescription;
     public Label labelDescription;
 
+    private int dateOffset = 0;
+    private boolean loaded = false;
+
     public void addEvent() {
         if(dateSelector.getValue() == null || fieldNewEvent.getText().isEmpty()) return;
         CalendarHandler.addEvent(new Event(dateSelector.getValue().toString().substring(2), fieldNewEvent.getText(), fieldDescription.getText()));
-        System.out.println(dateSelector.getValue().toString().substring(2));
 
         fieldNewEvent.clear();
         fieldDescription.clear();
@@ -38,29 +44,32 @@ public class Controller {
     }
 
     private void loadCalendar() {
+        CalendarHandler.saveEvents();
+
         gpaneCalendar.getChildren().clear();
         String today = getNextDate(0);
-        String currentMonth = today.substring(2, 4);
+
+        lbCalendarTitle.setText("TODAY - " + today);
+        lbTodayEvents.setText(getEventsOnDate(today).size() + " event(s) today");
 
         for(int i = 0; i < 5; i++) {
             for(int j = 0; j < 7; j++) {
-                int daysFromFDate = j + (7 * i);
+                int daysFromFDate = j + (7 * i) + dateOffset;
                 String date = getNextDate(daysFromFDate - Integer.parseInt(today.substring(4, 5)) + 1);
-                System.out.println(date);
+
                 // Create Individual cells inside GridPane for easier formatting and permanent gridlines
                 VBox cell = new VBox();
 
+                // Give it default text and ID
                 Label dateLabel = new Label(date);
+                dateLabel.setId("dateLabel");
+
+                // Change CSS if today
+                if(date.equals(today)) dateLabel.setId("todayDateLabel");
 
                 // Move Date Label to correct position
                 dateLabel.setTranslateX(5);
                 dateLabel.setTranslateY(2);
-
-                // Change font color if date is not in current month
-                if(!date.substring(2, 4).equals(currentMonth))
-                    dateLabel.setId("dateLabelOther");
-                else
-                    dateLabel.setId("dateLabel");
 
                 cell.setId("cell");
 
@@ -78,7 +87,6 @@ public class Controller {
                     EventHandler<MouseEvent> onClickedEvent = new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
-                            System.out.println(((Label) cell.getChildren().get(0)).getText());
                             displayEventList(getEventsOnDate(((Label) cell.getChildren().get(0)).getText()));
                         }
                     };
@@ -103,6 +111,7 @@ public class Controller {
         return format.format(calendar.getTime());
     }
 
+
     private ArrayList<Event> getEventsOnDate(String date) {
         ArrayList<Event> list = new ArrayList<>();
 
@@ -116,7 +125,6 @@ public class Controller {
     }
 
     private void displayEventList(ArrayList<Event> events) {
-        System.out.println("yes");
         listEvents.getItems().clear();
         for(Event e : events) {
             listEvents.getItems().add(e);
@@ -128,5 +136,22 @@ public class Controller {
         if(e == null) return;
         labelEventName.setText(e.name.toUpperCase());
         labelDescription.setText(e.description);
+    }
+
+    public void calendarNext(ActionEvent actionEvent) {
+        dateOffset += 7;
+        loadCalendar();
+    }
+
+    public void calendarPrev(ActionEvent actionEvent) {
+        dateOffset -= 7;
+        loadCalendar();
+    }
+
+    public void loadFromData(MouseEvent mouseEvent) {
+        if(loaded == true) return;
+        loaded = true;
+        IOHandler.readIn();
+        loadCalendar();
     }
 }

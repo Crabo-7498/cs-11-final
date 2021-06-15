@@ -195,9 +195,12 @@
     -fx-text-fill: #202020;
 }
 
-#dateLabelOther {
+#todayDateLabel {
     -fx-font-family: "JetBrains Mono NL";
-    -fx-text-fill: #808080;
+    -fx-text-fill: #000000;
+    -fx-background-color: #B0B0FF;
+    -fx-border-color: #B0B0FF;
+    -fx-border-width: 2px;
 }
 
 #eventNotificationLabel {

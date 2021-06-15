@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#loadFromData" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
    <children>
       <Label fx:id="lbTitle" alignment="CENTER" prefHeight="66.0" prefWidth="900.0" text="THE CALENDAR" textFill="WHITE">
          <font>
@@ -58,16 +58,19 @@
                         <Insets left="8.0" right="8.0" />
                      </VBox.margin>
                   </DatePicker>
-                  <ListView fx:id="listEvents" onMouseClicked="#loadEvent" prefHeight="108.0" prefWidth="329.0">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="8.0" right="8.0" top="10.0" />
-                     </VBox.margin>
-                  </ListView>
-                  <Separator prefHeight="11.0" prefWidth="319.0">
+                  <Separator prefHeight="12.0" prefWidth="319.0">
                      <padding>
                         <Insets left="4.0" right="4.0" />
                      </padding>
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
                   </Separator>
+                  <ListView fx:id="listEvents" onMouseClicked="#loadEvent" prefHeight="108.0" prefWidth="329.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="8.0" right="8.0" top="8.0" />
+                     </VBox.margin>
+                  </ListView>
                   <Label fx:id="labelEventName" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="NO EVENT SELECTED" textFill="WHITE">
                      <font>
                         <Font name="JetBrains Mono NL Regular" size="21.0" />
@@ -90,14 +93,14 @@
                <children>
                   <VBox prefHeight="539.0" prefWidth="574.0">
                      <children>
-                        <Label fx:id="lbCalendarName" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="57.0" prefWidth="574.0" text="CALENDAR NAME" textAlignment="CENTER" textFill="WHITE">
+                        <Label fx:id="lbCalendarTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="57.0" prefWidth="574.0" text="TODAYS DATE" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="JetBrains Mono NL Regular" size="28.0" />
                            </font>
                         </Label>
                         <HBox prefHeight="54.0" prefWidth="574.0">
                            <children>
-                              <Button id="calendarArrowButton" fx:id="btnPrev" mnemonicParsing="false" prefHeight="34.0" prefWidth="65.0" text="←" textFill="WHITE">
+                              <Button id="calendarArrowButton" fx:id="btnPrev" mnemonicParsing="false" onAction="#calendarPrev" prefHeight="34.0" prefWidth="65.0" text="←" textFill="WHITE">
                                  <font>
                                     <Font size="23.0" />
                                  </font>
@@ -108,7 +111,7 @@
                                     <Insets bottom="-10.0" top="-10.0" />
                                  </padding>
                               </Button>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="473.0" text="MONTH - YEAR" textAlignment="CENTER" textFill="WHITE">
+                              <Label fx:id="lbTodayEvents" alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="473.0" text="MONTH - YEAR" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="JetBrains Mono NL Regular" size="20.0" />
                                  </font>
@@ -116,7 +119,7 @@
                                     <Insets top="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <Button id="calendarArrowButton" fx:id="btnFwrd" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="65.0" text="→" textFill="WHITE">
+                              <Button id="calendarArrowButton" fx:id="btnFwrd" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#calendarNext" prefHeight="34.0" prefWidth="65.0" text="→" textFill="WHITE">
                                  <font>
                                     <Font size="23.0" />
                                  </font>

@@ -1,11 +1,11 @@
 package structures;
 
-import java.util.Date;
-
 public class Event {
     public String date;
     public String name;
     public String description;
+
+    private String separator = "ඞ";
 
     public Event(String date, String name, String description) {
         this.date = date;
@@ -15,8 +15,8 @@ public class Event {
         else this.description = description;
     }
 
-    public String toTSV() {
-        return this.date + "\t" + this.name;
+    public String toSSV() {
+        return this.date + separator + this.name + separator + description;
     }
 
     public String toString() {
