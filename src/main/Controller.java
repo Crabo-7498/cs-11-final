@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import structures.CalendarHandler;
 import structures.Event;
 import structures.IOHandler;
+import structures.Utility;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,11 +51,11 @@ public class Controller {
 
         // Clear the grid pane to avoid duplication and calculates todays date
         gpaneCalendar.getChildren().clear();
-        String today = getNextDate(0);
+        String today = Utility.getNextDate(0);
 
         // Set the title and the number of event today
         lbCalendarTitle.setText("TODAY - " + today);
-        lbTodayEvents.setText(getEventsOnDate(today).size() + " event(s) today");
+        lbTodayEvents.setText(Utility.getEventsOnDate(today).size() + " event(s) today");
 
         // Iterated through each cell of the displayed calendar
         for(int i = 0; i < 5; i++) {
@@ -63,7 +64,7 @@ public class Controller {
                 // Calculates the first date to be displayed with its (X, Y) position in the calendar grid
                 // Gets the current (today) date by doing some math (i wrote this equation some time ago so idk what it does either - but at least it works)
                 int daysFromFDate = j + (7 * i) + dateOffset;
-                String date = getNextDate(daysFromFDate - Integer.parseInt(today.substring(4, 5)) + 1);
+                String date = Utility.getNextDate(daysFromFDate - Integer.parseInt(today.substring(4, 5)) + 1);
 
                 // Create Individual cells inside GridPane for easier formatting and permanent gridlines
                 VBox cell = new VBox();
@@ -84,7 +85,7 @@ public class Controller {
                 cell.getChildren().add(0, dateLabel);
 
                 // Creates an arraylist of events on this day (note this can be empty if there are no events)
-                ArrayList<Event> e = getEventsOnDate(date);
+                ArrayList<Event> e = Utility.getEventsOnDate(date);
 
                 // Checks if E is empty
                 if(e.size() != 0) {
@@ -100,7 +101,7 @@ public class Controller {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             currentSelectedDate = ((Label) cell.getChildren().get(0)).getText();
-                            displayEventList(getEventsOnDate(currentSelectedDate));
+                            displayEventList(Utility.getEventsOnDate(currentSelectedDate));
                         }
                     };
 
@@ -116,58 +117,6 @@ public class Controller {
         }
     }
 
-    /**
-     * Gets a future date given the amount of days it is from today
-     *
-     * Requires: Int - Number of days from today
-     * Modifies: Nothing
-     * Effects: Calculates and returns formatted date
-     *
-     * @return String - formatted date YY-MM-DD
-     */
-    private String getNextDate(int days) {
-
-        // Creates a date format, e.g. I am writing this as of Jun 15 2021, so it would display 21-06-15
-        // A date and calendar are also created for the next part
-        final SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd");
-        final Date date = new Date();
-        final Calendar calendar = Calendar.getInstance();
-
-        // Sets the calendar time to today's date and adds DAYS amount of days
-        calendar.setTime(date);
-        calendar.add(Calendar.DAY_OF_YEAR, days);
-
-        return format.format(calendar.getTime());
-    }
-
-
-    /**
-     * Get all events on a given date
-     *
-     * Requires: String - A formatted date in YY-MM-DD
-     * Modifies: Nothing
-     * Effects: Returns and arraylist of all events on that date
-     *
-     * @return - ArrayList - All events on DATE
-     */
-    private ArrayList<Event> getEventsOnDate(String date) {
-
-        // Check if null
-        if(date == null) return null;
-
-        // Creates the arraylist that we will return later
-        ArrayList<Event> list = new ArrayList<>();
-
-        // Iterates through the events and checks if their date is equal to the selected date
-        // Adds them to the arraylist if yes
-        for(Event e : CalendarHandler.getEvents()) {
-            if(e.date.equals(date)) {
-                list.add(e);
-            }
-        }
-
-        return list;
-    }
 
     /**
      * Displays all events on a selected date to the event list
@@ -237,7 +186,7 @@ public class Controller {
         // Display the newly created event to the event list (This can be null)
         // If it is null, (so we created an event when we dont have anything selected), then nothing happens
         // Reload the calendar after
-        displayEventList(getEventsOnDate(currentSelectedDate));
+        displayEventList(Utility.getEventsOnDate(currentSelectedDate));
         loadCalendar();
     }
 
@@ -261,7 +210,7 @@ public class Controller {
         btnDelete.setDisable(true);
 
         // Reload the event list
-        displayEventList(getEventsOnDate(currentSelectedDate));
+        displayEventList(Utility.getEventsOnDate(currentSelectedDate));
     }
 
     /**

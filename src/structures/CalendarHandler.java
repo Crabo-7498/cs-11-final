@@ -48,4 +48,6 @@ public class CalendarHandler {
     public static void deleteEvent(Event event) {
         events.remove(event);
     }
+
+    public static void clearEvents() { events.clear(); }
 }
