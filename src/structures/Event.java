@@ -15,10 +15,28 @@ public class Event {
         else this.description = description;
     }
 
+    /**
+     * String Separated Value to store to data
+     *
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects: Returns formatted string
+     *
+     * @return String - Formatted SSV
+     */
     public String toSSV() {
         return this.date + separator + this.name + separator + description;
     }
 
+    /**
+     * ToString function for listView
+     *
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects: Returns uppercase name
+     *
+     * @return String - Name
+     */
     public String toString() {
         return name.toUpperCase();
     }

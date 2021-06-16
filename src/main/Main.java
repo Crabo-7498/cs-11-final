@@ -13,6 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("calender.fxml"));
         primaryStage.setTitle("Calendar");
         primaryStage.setScene(new Scene(root, 900, 600));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
