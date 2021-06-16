@@ -20,11 +20,10 @@ public class Utility {
         // Creates a date format, e.g. I am writing this as of Jun 15 2021, so it would display 21-06-15
         // A date and calendar are also created for the next part
         final SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd");
-        final Date date = new Date();
         final Calendar calendar = Calendar.getInstance();
 
         // Sets the calendar time to today's date and adds DAYS amount of days
-        calendar.setTime(date);
+        calendar.setTime(Time.localDate.get());
         calendar.add(Calendar.DAY_OF_YEAR, days);
 
         return format.format(calendar.getTime());
