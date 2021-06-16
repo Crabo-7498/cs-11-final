@@ -63,7 +63,8 @@ public class Controller {
 
                 // Calculates the first date to be displayed with its (X, Y) position in the calendar grid
                 // Gets the current (today) date by doing some math (i wrote this equation some time ago so idk what it does either - but at least it works)
-                int daysFromFDate = j + (7 * i) + dateOffset;
+                // Minus 2 to fix alignment problem (make Sunday on 1st column, Monday on 2nd, etc.)
+                int daysFromFDate = j + (7 * i) + dateOffset + 3;
                 String date = Utility.getNextDate(daysFromFDate - Integer.parseInt(today.substring(4, 5)) + 1);
 
                 // Create Individual cells inside GridPane for easier formatting and permanent gridlines
@@ -225,6 +226,9 @@ public class Controller {
         // Gets the current selected event in the event list and returns if it is null
         Event e = listEvents.getSelectionModel().getSelectedItem();
         if(e == null) return;
+
+        // Set wrap text to true here since it doesnt allow it in scenebuilder :/
+        lbDescription.setWrapText(true);
 
         // Sets all the labels and enables the delete button
         lbEventName.setText(e.name.toUpperCase());
